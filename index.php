@@ -1,3 +1,24 @@
+<?php 
+
+if(isset($_GET['password_lenght']) && ($_GET['password_lenght'])){
+    $password_lenght = $_GET['password_lenght'];
+
+    function generatePassword($password_lenght){
+        $alp = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?!.,/[]{}()&@#';
+        $alpLeng = strlen($alp) - 1;
+
+        $password = [];
+
+        for ($i = 0; $i < ($password_lenght); $i++) {
+            $password[] = $alp[random_int(0, $alpLeng)];
+        };
+
+        return implode($password);
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +36,9 @@
             <input type="text" name="password_lenght" id="password_lenght">
             <button class="mx-2" type="submit">Genera</button>
         </form>
+    </div>
+    <div class="mt-5 p-3">
+        <h5> <?php echo generatePassword($password_lenght) ?></h5>
     </div>
 </body>
 </html>
